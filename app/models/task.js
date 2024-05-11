@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const taskSchema = new mongoose.schema({
-  Taskname: {
+const taskSchema = new mongoose.Schema({
+  task: {
     type: String,
     require: true,
   },
