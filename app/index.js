@@ -1,12 +1,15 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
+const port = 8080;
+
+app.set("view engine", "ejs"); //setando a engine ejs
+app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
 
 //rota home
-app.get("/home", (req, res) => {
-  res.send("hellou word");
+app.get("/app/task", (req, res) => {
+  res.render("index");
 });
 
-
-
-const port = 8080;
 app.listen(port, () => console.log(`Rodando server express na port : ${port}`));
