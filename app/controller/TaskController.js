@@ -5,7 +5,7 @@ const Task = require("../models/task");
 const getALLTask = async (req, res) => {
   try {
     const TaskList = await Task.find();
-    return res.render("index", { TaskList, task: null, taskDelete : null}); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    return res.render("index", { TaskList, task: null, taskDelete: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -13,31 +13,40 @@ const getALLTask = async (req, res) => {
 
 //end point de getTask por id;
 const getTaskById = async (req, res) => {
-   try {
+  try {
     const method = req.params.method; //pegando o metodo que passei na routes da requisição
     const TaskList = await Task.find();
-    if(method === "update"){
-    const task = await Task.findOne({ _id: req.params.id }); //capturando um id pelo parametro que defino da rota.
-    res.render("index",{ task, TaskList, taskDelete : null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
-    }else {
+    if (method === "update") {
+      const task = await Task.findOne({ _id: req.params.id }); //capturando um id pelo parametro que defino da rota.
+      res.render("index", { task, TaskList, taskDelete: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    } else {
       const taskDelete = await Task.findOne({ _id: req.params.id });
-      res.render("index",{ task: null, TaskList, taskDelete }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+      res.render("index", { task: null, TaskList, taskDelete }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
     }
-   } catch (error) {
+  } catch (error) {
     res.status(500).send(error.message);
-   }
+  }
 };
 
 //end point para atualização de uma Task
 const updateOneTask = async (req, res) => {
-    try {
-        const task = req.body;
-        await Task.updateOne({ _id : req.params.id}, task);
-        res.redirect("/app/task");
-    } catch (error) {
-        res.status(500).send({error : error.message});
-    }
+  try {
+    const task = req.body;
+    await Task.updateOne({ _id: req.params.id }, task);
+    res.redirect("/app/task");
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
 };
+
+const deleteOneTask = async(req,res) => {
+    try {
+      await Task.deleteOne({_id : req.params.id});
+      res.redirect("/app/task");
+    } catch (error) {
+      res.status(500).send({error : error.message});
+    }
+}  
 
 // end point para exibir o formulário de criação de tarefa
 const showCreateForm = (req, res) => {
@@ -64,4 +73,5 @@ module.exports = {
   showCreateForm,
   getTaskById,
   updateOneTask,
- };
+  deleteOneTask
+};

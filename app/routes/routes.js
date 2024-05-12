@@ -7,5 +7,6 @@ routes.get("/app/task/create", TaskController.showCreateForm); // Rota para exib
 routes.post("/app/task/create", TaskController.createTask); // Rota para ativar o end poitn de criar task
 routes.get("/app/getByID/:id/:method", TaskController.getTaskById); // obs : sempre que um parametro é mandado pela rota ele vem em formato de string
 routes.post("/app/updateTask/:id", TaskController.updateOneTask); // Rota para atualizar task
+routes.get("/app/deleteTask/:id", TaskController.deleteOneTask); //rota para reletar a task
 
 module.exports = routes;
