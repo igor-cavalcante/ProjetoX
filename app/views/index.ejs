@@ -5,22 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do List</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
-    <h1>Minhas Tarefas</h1>
+    <header>
+        <h1>Minhas Tarefas</h1>
+    </header>
+   
+
+    <% if (task === null ) {%>
+    <form action="/app/task" method="post">
+        <input type="text" name="task" id="task" >
+        <button id="updateButton" type="submit">pesquisar</button>
+    </form>
+    <% } else {%>
+    <form action="/app/updateTask/<%= task._id %>" method="post">
+        <input type="text" name="task" id="task" value="<%= task.task%>">
+        <button id="updateButton" type="submit">Atualizar task</button>
+    </form>
+    <%}%>
+   
 
     <button><a href="/app/task/create">Criar tarefa</a></button>
     
-    <ul>
-        <% TaskList.forEach((task) => { %>
-        <li>
-            <%= task.task %> | <%= task.date.toLocaleDateString('pt-BR') %> 
-        </li>
-    <% })%>
+    <section id="task">
+
+        <ul>
+            <% TaskList.forEach((task) => { %>
+            <li>
+                <%= task.task %> | <%= task.date.toLocaleDateString('pt-BR') %> 
+                <a class="fa fa-edit" href="/app/getByID/<%= task._id %>"></a>
+                <a  href="/app/getByID/<%= task._id %>">deletar</a>
+            </li>
+        <% })%>
+
     </ul>
 
+    </section>
+
+    
     <script src="/script.js"></script>
 </body>
 </html>

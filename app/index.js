@@ -1,12 +1,12 @@
-const express = require("express");
-const path = require("path");
-const routes = require("./routes/routes");
-
+const express = require("express"); //importando o modulo express para criar o servidor local
+const path = require("path"); //importando modulo path do node
+const routes = require("./routes/routes"); //importando as rotas
 const ConnectToDataBase = require("./database/config"); //importando base de dados
 
-const dotenv = require('dotenv');
+//inicializando conexão com banco de dados
+const dotenv = require("dotenv"); //importando arquivo de configuração
 dotenv.config(); //aquivo de configuração de usuario e senha do BD
-ConnectToDataBase();//se conectando a base de dados.
+ConnectToDataBase(); //se conectando a base de dados.
 
 const app = express();
 const port = 8080;
@@ -14,14 +14,8 @@ const port = 8080;
 app.set("view engine", "ejs"); //setando a engine ejs
 app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
 app.use(express.urlencoded({ extended: true })); // Configuração do middleware para analisar dados de formulário
-
 app.use(routes);
 
-
-
-//rota home
-// app.get("/app/task", (req, res) => {
-//   res.render("index");
-// });
-
-app.listen(port, () => console.log(`Rodando server express na port : ${port}`));
+app.listen(port, () =>
+  console.log(`Rodando server express http://localhost:${port}/app/task`)
+);
