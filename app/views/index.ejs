@@ -15,9 +15,8 @@
         <h1>Minhas Tarefas</h1>
     </header>
    
-
     <% if (task === null ) {%>
-    <form action="/app/task" method="post">
+    <form action="/app/task" method="get">
         <input type="text" name="task" id="task" >
         <button id="updateButton" type="submit">pesquisar</button>
     </form>
@@ -37,13 +36,26 @@
             <% TaskList.forEach((task) => { %>
             <li>
                 <%= task.task %> | <%= task.date.toLocaleDateString('pt-BR') %> 
-                <a class="fa fa-edit" href="/app/getByID/<%= task._id %>"></a>
-                <a  href="/app/getByID/<%= task._id %>">deletar</a>
+                <a class="fa fa-edit" href="/app/getByID/<%= task._id%>/update"></a>
+                <a  href="/app/getByID/<%= task._id %>/delete">deletar</a>
             </li>
         <% })%>
-
     </ul>
+    </section>
 
+
+    <% if (taskDelete !== null){ %>
+    <section id ="modal">
+        <div class="card">
+                <a href="/app/task">x</a>
+                <h2>confirmação</h2>
+                <hr>
+                <p>deseja deletar a task <%= taskDelete.task %> ?</p>
+                <a href="/app/task">não</a>
+                <a href="/app/deleteTask/<%= taskDelete._id %>">Sim</a>
+        </div>
+    <% } %> 
+   
     </section>
 
     

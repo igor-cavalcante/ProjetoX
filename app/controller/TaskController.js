@@ -5,7 +5,7 @@ const Task = require("../models/task");
 const getALLTask = async (req, res) => {
   try {
     const TaskList = await Task.find();
-    return res.render("index", { TaskList, task: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    return res.render("index", { TaskList, task: null, taskDelete : null}); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -14,9 +14,15 @@ const getALLTask = async (req, res) => {
 //end point de getTask por id;
 const getTaskById = async (req, res) => {
    try {
-    const task = await Task.findOne({ _id: req.params.id }); //capturando um id pelo parametro que defino da rota.
+    const method = req.params.method; //pegando o metodo que passei na routes da requisição
     const TaskList = await Task.find();
-    res.render("index",{ task, TaskList }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    if(method === "update"){
+    const task = await Task.findOne({ _id: req.params.id }); //capturando um id pelo parametro que defino da rota.
+    res.render("index",{ task, TaskList, taskDelete : null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    }else {
+      const taskDelete = await Task.findOne({ _id: req.params.id });
+      res.render("index",{ task: null, TaskList, taskDelete }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+    }
    } catch (error) {
     res.status(500).send(error.message);
    }
