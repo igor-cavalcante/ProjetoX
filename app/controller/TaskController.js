@@ -5,8 +5,8 @@ const Task = require("../models/task");
 const getALLTask = async (req, res) => {
   try {
     const TaskList = await Task.find();
-    return res.render("index", { TaskList, task: null, taskDelete: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
-  } catch (error) {
+    return res.render("index", { TaskList, task: null, taskDelete: null,TaskCreate: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+  }catch (error) {
     res.status(500).send(error.message);
   }
 };
@@ -18,15 +18,30 @@ const getTaskById = async (req, res) => {
     const TaskList = await Task.find();
     if (method === "update") {
       const task = await Task.findOne({ _id: req.params.id }); //capturando um id pelo parametro que defino da rota.
-      res.render("index", { task, TaskList, taskDelete: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+      res.render("index", { task, TaskList, taskDelete: null, taskCreate: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
     } else {
       const taskDelete = await Task.findOne({ _id: req.params.id });
-      res.render("index", { task: null, TaskList, taskDelete }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
+      res.render("index", { task: null, TaskList, taskDelete, taskCreate: null }); //enviando as variaveis em forma de objedo pra meu ./view/index(podendo assim manipular elas)
     }
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
+
+// // end point para exibir o formulário de criação de tarefa
+// const showCreateForm = async (req, res) => {
+//   try {
+//     const method = req.params.method;
+//     const TaskList = await Task.find();
+//     if(method === "create"){
+//     res.render("index", {task:null, TaskList, taskDelete: null, taskCreate});
+//     }else{
+//     return res.render("index", { task: null, TaskList, taskDelete: null,taskCreate: null });
+//     }
+//   } catch (error) {
+//     res.status(500).send(error.message);
+//   }
+// };
 
 //end point para atualização de uma Task
 const updateOneTask = async (req, res) => {
@@ -48,29 +63,62 @@ const deleteOneTask = async(req,res) => {
     }
 }  
 
-// end point para exibir o formulário de criação de tarefa
-const showCreateForm = (req, res) => {
-  res.render("CreateTask");
-};
+// //end point para criação de uma task
+// const createTask = async (req, res) => {
+//   const task = req.body;
+//   if (!task.task) {
+//     return res.redirect("/app/task");
+//   }
+//   try {
+//     await Task.create(task);
+//     return res.redirect("/app/task");
+//   } catch (error) {
+//     return res.status(500).send(error.mensage);
+//   }
+// };
 
-//end point para criação de uma task
 const createTask = async (req, res) => {
-  const task = req.body;
-  if (!task.task) {
+  const { task, categoria, Date, horas, checkbox, notes } = req.body;
+
+  if (!task || !categoria) {
     return res.redirect("/app/task");
   }
+
+  const taskData = {
+    task,
+    categoria,
+    date: Date,
+    time: horas,
+    notifications: checkbox ? true : false,
+    notes,
+    check: false, // Inicialmente, a tarefa não está marcada como concluída
+  };
+
   try {
-    await Task.create(task);
+    await Task.create(taskData);
     return res.redirect("/app/task");
   } catch (error) {
-    return res.status(500).send(error.mensage);
+    return res.status(500).send(error.message);
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = {
   getALLTask,
   createTask,
-  showCreateForm,
+  // showCreateForm,
   getTaskById,
   updateOneTask,
   deleteOneTask

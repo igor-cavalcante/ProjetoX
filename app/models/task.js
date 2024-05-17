@@ -3,15 +3,28 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
   task: {
     type: String,
-    require: true,
+    required: true,
   },
-  check: {
-    type: Boolean,
-    require: true,
+  categoria: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now(),
+    required: true,
+  },
+  time: {
+    type: String,
+  },
+  notifications: {
+    type: Boolean,
+  },
+  notes: {
+    type: String,
+  },
+  check: {
+    type: Boolean,
+    default: false,
   },
 });
 

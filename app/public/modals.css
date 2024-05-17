@@ -1,0 +1,497 @@
+/* PRIMEIRO MODAL (CALENDÁRIO) */
+#fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+#modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    max-width: 90%;
+    background-color: var(--bg-primary);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+
+#fade,
+#modal {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.modal-header i {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.modal-header i:hover {
+    color: var(--special);
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+#modal.hide,
+#fade.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal.hide {
+    top: 0;
+}
+
+#fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+#modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    max-width: 90%;
+    background-color: var(--bg-primary);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+
+#fade,
+#modal {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.modal-header i {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.modal-header i:hover {
+    color: var(--special);
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+#modal.hide,
+#fade.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal.hide {
+    top: 0;
+}
+
+
+
+
+
+
+
+
+
+/* Calendário */
+.calendario {
+    margin: auto;
+    width: 380px;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 13px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.calendario header {
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.calendario ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+
+.calendario li {
+    width: calc(100% / 7);
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+#anterior,
+#proximo {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin: auto;
+}
+
+#anterior::before,
+#proximo::before {
+    content: '';
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: var(--text-primary);
+
+
+}
+
+#anterior::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+
+}
+
+#proximo::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+
+}
+
+#anterior:hover::before,
+#proximo:hover::before {
+    border-color: var(--special);
+    transition: 0.3s;
+
+}
+
+.dias {
+    font-weight: 600;
+    color: var(--text-primary);
+
+}
+
+.datas li {
+    color: var(--text-secondary);
+}
+
+
+.datas li.today {
+    color: var(--text-primary);
+
+
+}
+
+.datas li.today::before {
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--special);
+    border-radius: 50%;
+    z-index: -1;
+
+}
+
+.datas li.inactive {
+    color: var(--text-tertiary);
+
+}
+
+#searchForm {
+    text-align: center;
+}
+
+
+#btn-pesquisar {
+    border-radius: 1rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3rem;
+    width: 9rem;
+    font-family: 'Poppins';
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    text-align: center;
+}
+
+
+#btn-pesquisar:hover {
+    background-color: var(--special);
+    transition: 0.7s;
+    border-color: var(--special);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Segundo modal */
+#new-modal {
+    background-color: #007bff;
+}
+
+
+#new-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+#new-modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    max-width: 90%;
+    background-color: var(--bg-primary);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+
+#new-fade,
+#new-modal {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#new-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+#new-modal .modal-header i {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+#new-modal .modal-header i:hover {
+    color: var(--special);
+}
+
+#new-modal .modal-body p {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+#new-modal.hide,
+#new-fade.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#new-modal.hide {
+    top: 0;
+}
+
+
+/* Inputs do segundo modal */
+
+#new-modal h2,
+h3,
+h4,
+h5 {
+    color: var(--text-primary);
+}
+
+#new-modal #task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-secondary);
+    padding: 0.3rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+}
+
+#new-modal #task input {
+    background-color: var(--bg-secondary);
+    border: none;
+    width: 100%;
+    color: var(--text-primary);
+    padding: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+#new-modal #task::placeholder {
+    font-size: 1rem;
+    color: var(--special);
+}
+
+#new-modal #task input::-webkit-inner-spin-button,
+#new-modal #task input::-webkit-outer-spin-button {
+    appearance: none;
+}
+
+#new-modal #task input:focus {
+    outline: none;
+}
+
+
+
+#categoria {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.3rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+#selectedDate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.3rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+
+}
+
+
+#selectedDate selectedDate {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+#Horas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.3rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+
+#notes {
+    height: 8rem;
+    width: 14rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    overflow-wrap: break-word;
+}
+
+
+.modal-buttons input {
+    width: 6rem;
+    height: 2rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.modal-buttons input:hover {
+    background-color: var(--special);
+    color: white;
+    transition: 0.7s;
+}

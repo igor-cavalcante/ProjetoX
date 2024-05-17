@@ -1,64 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do List</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do List</title>
+  <link rel="stylesheet" href="/nav.css">
+  <link rel="stylesheet" href="/modals.css">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/media.css">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Minhas Tarefas</h1>
-    </header>
-   
-    <% if (task === null ) {%>
-    <form action="/app/task" method="get">
-        <input type="text" name="task" id="task" >
-        <button id="updateButton" type="submit">pesquisar</button>
-    </form>
-    <% } else {%>
-    <form action="/app/updateTask/<%= task._id %>" method="post">
-        <input type="text" name="task" id="task" value="<%= task.task%>">
-        <button id="updateButton" type="submit">Atualizar task</button>
-    </form>
-    <%}%>
-   
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="logo">
+        <a href="#" class="nav-link">
+          <span class="link-text logo-text">Projeto X</span>
 
-    <button><a href="/app/task/create">Criar tarefa</a></button>
-    
-    <section id="task">
+        </a>
+      </li>
 
-        <ul>
-            <% TaskList.forEach((task) => { %>
-            <li>
-                <%= task.task %> | <%= task.date.toLocaleDateString('pt-BR') %> 
-                <a class="fa fa-edit" href="/app/getByID/<%= task._id%>/update"></a>
-                <a  href="/app/getByID/<%= task._id %>/delete">deletar</a>
-            </li>
-        <% })%>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-location-dot"></i>
+          <span class="link-text">Consultar</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-person-running"></i>
+          <span class="link-text">Exercícios</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-regular fa-file"></i>
+          <span class="link-text">Tarefas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-calculator"></i>
+          <span class="link-text">Calculadora IMC</span>
+        </a>
+      </li>
+
+      <li class="nav-item" id="themeButton">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span class="link-text">Temas</span>
+        </a>
+      </li>
     </ul>
-    </section>
+  </nav>
+
+  <main id="container">
+    <h1>Suas tarefas</h1>
 
 
-    <% if (taskDelete !== null){ %>
-    <section id ="modal">
-        <div class="card">
-                <a href="/app/task">x</a>
-                <h2>confirmação</h2>
-                <hr>
-                <p>deseja deletar a task <%= taskDelete.task %> ?</p>
-                <a href="/app/task">não</a>
-                <a href="/app/deleteTask/<%= taskDelete._id %>">Sim</a>
+    <div id="selection">
+      <div class="input-box">
+        <div class="input-field">
+          <i class="fa-solid fa-calendar-days open-modal-button"></i> <!-- Movido o ícone de calendário aqui -->
+          <input type="text" id="search" step="0.01" name="search" autocomplete="off" plarequired
+            placeholder="Digite uma tarefa aqui">
+          <span></span>
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-    <% } %> 
-   
-    </section>
 
-    
-    <script src="/script.js"></script>
+        <div id="fade" class="hide"></div>
+        <div id="modal" class="hide">
+          <div class="modal-header">
+            <h2 style="color: #49DBC1">Calendário</h2>
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <div class="modal-body">
+            <div class="calendario">
+              <header>
+                <h3></h3>
+                <nav>
+                  <button id="anterior"></button>
+                  <button id="proximo"></button>
+                </nav>
+              </header>
+
+              <section>
+                <ul class="dias">
+                  <li>Dom</li>
+                  <li>Seg</li>
+                  <li>Ter</li>
+                  <li>Quar</li>
+                  <li>Quin</li>
+                  <li>Sex</li>
+                  <li>Sab</li>
+                </ul>
+                <ul class="datas"></ul>
+              </section>
+            </div>
+
+            <form id="searchForm" action="/search" method="POST">
+              <button type="submit" id="btn-pesquisar">Pesquisar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="buttons">
+      <div class="button">
+        <i class="fa-solid fa-list-check"></i>
+        <label for="button-label">Tarefas</label>
+      </div>
+      <div class="button">
+        <i class="fa-solid fa-dumbbell"></i>
+        <label for="button-label">Treino</label>
+      </div>
+      <div class="button">
+        <i class="fa-solid fa-gamepad"></i>
+        <label for="button-label">Lazer</label>
+      </div>
+      <div class="button">
+        <i class="fa-solid fa-apple-whole"></i>
+        <label for="button-label">Dieta</label>
+      </div>
+    </div>
+
+    <div id="task-space">
+      <ul id="Lista">
+        <% TaskList.forEach((task)=> { %>
+          <li>
+            <%= task.task %> | <%= task.date.toLocaleDateString('pt-BR')%>
+                <a class="fas fa-edit edit-icon" href="/app/getByID/<%= task._id%>/update"></a>
+                <a class="fas fa-trash-alt delete-icon" href="/app/deleteTask/<%= task._id %>"></a>
+          </li>
+          <% })%>
+      </ul>
+      <i class="fa-solid fa-circle-plus" id="openNewModalButton"></i>
+      <div id="new-fade" class="hide">
+      </div>
+
+      <!-- Form de criação de Task -->
+      <form action="/app/task/create" method="post">
+        <!-- Criação da task -->
+        <div id="new-modal" class="hide">
+          <div class="modal-header">
+            <h2 style="color: #49DBC1">Adicionar nova tarefa</h2>
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+
+          <div class="modal-body">
+            <!-- Conteúdo do novo modal aqui -->
+            <div class="new-task">
+              <h3>Adicionar nova tarefa</h3>
+              <!-- input de conteúdo da task -->
+              <input type="text" id="task" step="0.01" name="task">
+            </div>
+
+            <div class="task-category">
+              <h3>Selecione a categoria</h3>
+              <select name="categoria" id="categoria">
+                <option>Selecione uma opção</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Exerciícios">Exercícios</option>
+                <option value="Dieta">Dieta</option>
+              </select>
+            </div>
+
+            <div class="task-date">
+              <h3>Data da tarefa</h3>
+              <input type="date" id="Date" name="Date" required>
+              <input type="time" name="horas" id="horas">
+            </div>
+
+            <div class="task-notifications">
+              <h5>Ativar notificações?</h5>
+              <input type="checkbox" id="checkbox">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+
+
+            <div class="task-notes">
+              <h5>Anotaçoes extras</h5>
+              <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="modal-buttons">
+              <input type="submit" value="Enviar" />
+              <!-- <input type="reset" value="Cancelar" /> -->
+            </div>
+          </div>
+      </form>
+    </div>
+    <!-- Fim criação da task -->
+
+    </div>
+
+    <div id="task-block"> </div>
+
+  </main>
+
+
+
+  <script src="/scriptTask.js"></script>
 </body>
+
 </html>

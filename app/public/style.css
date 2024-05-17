@@ -1,3 +1,274 @@
-h1{
-    color: red;
+ /* Configurações iniciais */
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+ :root {
+   font-size: 16px;
+   --text-primary: #b6b6b6;
+   --text-secondary: #ececec;
+   --bg-primary: #23232e;
+   --bg-secondary: #141418;
+   --bg-third: var(#000000);
+
+   --transition-speed: 600ms;
+ }
+
+ * {
+   font-family: 'Poppins';
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+
+ }
+
+ body {
+   color: black;
+   background-color: white;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   width: 100%;
+   height: 100vh;
+   background-color: var(--bg-secondary);
+ }
+
+
+
+ main {
+   margin-left: 5rem;
+   padding: 1rem;
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+ }
+
+
+ /* Conteúdo da página */
+ #container {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+ }
+
+
+ #container h1 {
+   font-size: 3rem;
+   margin-top: 5rem;
+   margin-bottom: 5rem;
+   vertical-align: super;
+   text-align: center;
+   justify-content: center;
+   color: var(--text-secondary);
+
+ }
+
+ /* Barra de pesquisar */
+ .input-field {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background-color: var(--bg-secondary);
+   padding: 0.3rem;
+   border-radius: 2rem;
+   margin-bottom: 2rem;
+   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+ }
+
+ .input-box {
+   max-height: 4rem;
+ }
+
+ .input-box label {
+   color: var(--text-secondary);
+   font-weight: 500;
+
+
+ }
+
+ .input-field span,
+ .input-field i {
+   color: var(--text-primary);
+   font-size: 1.3rem;
+   padding: 0.6 1rem;
+   margin-right: 6px;
+   margin-left: 10px;
+
+ }
+
+ .input-field input {
+   background-color: var(--bg-secondary);
+   border: none;
+   width: 100%;
+   color: var(--text-primary);
+   padding: 0 0.5rem;
+   font-size: 1.5rem;
+ }
+
+ .input-field input ::placeholder {
+   font-size: 0.8rem;
+   color: var(--special);
+
+ }
+
+ .input-field i:hover {
+   color: var(--special);
+   transition: 0.3s;
+ }
+
+ .input-field input::-webkit-inner-spin-button,
+ .input-field input::-webkit-outer-spin-button {
+   appearance: none;
+
+ }
+
+ .input-field input:focus {
+   outline: none;
+
+ }
+
+
+ /* Botões de seleção */
+ #buttons {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .button {
+   background-color: var(--special);
+   width: 8rem;
+   height: 8rem;
+   margin: 2rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10%;
+   font-size: 2rem;
+   border: 2px solid var(--text-tertiary);
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+ }
+
+ .button:hover {
+   background-color: #3aaa96;
+   transition: 0.3s;
+ }
+
+
+ .button i {
+   color: var(--bg-primary);
+   margin: auto;
+
+ }
+
+ .button label {
+   color: var(--bg-primary);
+   font-size: 1.2rem;
+   font-family: 'poppins';
+
+ }
+
+ /* Barras de tarefas */
+ #selection {
+   display: flex;
+   justify-content: center;
+
+ }
+
+ #openNewModalButton {
+   margin-bottom: 100px;
+ }
+
+ #task-space {
+   margin-top: 2.4rem;
+   display: flex;
+   flex-direction: column;
+   margin-bottom: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ /* Barra de tarefas individuais */
+ #Lista {
+   list-style: none;
+ }
+
+ #Lista li {
+   display: flex;
+   align-items: center;
+   /* Alinha verticalmente os itens no centro */
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+   font-size: 1.3rem;
+   padding: 2rem;
+   margin: 1rem;
+   border-radius: 5rem;
+   width: 600px;
+ }
+
+ #Lista li .edit-icon,
+ #Lista li .delete-icon {
+    
+   font-size: 1.3rem;
+   margin-left: 10px;
+   /* Espaço entre os ícones */
+ }
+
+a{
+  text-decoration: none;
+  color:var(--text-primary);;
 }
+
+ #Lista li a:hover {
+   color: var(--special);
+   transition: 0.6s;
+ }
+
+ #Lista li .edit-icon {
+   margin-left: auto;
+   /* Empurra o ícone de edição para o final do contêiner flex */
+ }
+
+ #Lista li .delete-icon {
+   margin-left: 10px;
+   /* Espaço entre os ícones */
+ }
+
+
+ #task-space .fa-circle-plus {
+   font-size: 2.5rem;
+   margin-top: 1.5rem;
+   align-items: center;
+   color: var(--text-primary)
+ }
+
+ #task-space .fa-circle-plus:hover {
+   color: var(--special);
+   transition: 0.5s;
+
+
+ }
+
+ .dark {
+   --text-primary: #b6b6b6;
+   --text-secondary: #ececec;
+   --bg-primary: #23232e;
+   --bg-secondary: #141418;
+   --bg-third: #23232e;
+   --special: #49DBC1;
+ }
+
+ .light {
+   --text-primary: #1f1f1f;
+   --text-secondary: #000000;
+   --text-tertiary: #d0cdd3;
+   --bg-primary: #ffffff;
+   --bg-secondary: #e4e4e4;
+   --bg-third: #ffffff;
+   --special: #49DBC1;
+ }

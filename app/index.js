@@ -13,7 +13,7 @@ const port = 8080;
 
 app.set("view engine", "ejs"); //setando a engine ejs
 app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
-app.use(express.urlencoded({ extended: true })); // Configuração do middleware para analisar dados de formulário
+app.use(express.urlencoded({ extended: true })); 
 app.use(routes);
 
 app.listen(port, () =>
