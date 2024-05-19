@@ -1,0 +1,147 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora - IMC</title>
+  <script defer src="/script_imc.js"></script>
+  <link rel="stylesheet" href="/style_imc.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="logo">
+        <a href="#" class="nav-link">
+          <span class="link-text logo-text">Projeto X</span>
+          
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-location-dot"></i>
+          <span class="link-text">Consultar</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-person-running"></i>
+          <span class="link-text">Exercícios</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/app/task" class="nav-link">
+          <i class="fa-regular fa-file"></i>
+          <span class="link-text">Tarefas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/app/calculadora" class="nav-link">
+          <i class="fa-solid fa-calculator"></i>
+          <span class="link-text">Calculadora IMC</span>
+        </a>
+      </li>
+
+      <li class="nav-item" id="themeButton">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span class="link-text">Temas</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main id="container">
+      
+
+
+      <section id="img">
+          <img src="/img_imc.svg" alt="" id="img">
+      </section>
+
+      <section id="calculator">
+          <form action="" id="form">
+              <h1 class="title" id="title">
+                  Calculadora -
+              </h1>
+              <h1 class="title">
+                 IMC
+              </h1>
+              <span id="line"></span>
+
+              <div class="input-box">
+                  <label for="weight">Peso em KG</label>
+
+                  <div class="input-field">
+                      <i class="fa-solid fa-weight-scale"></i>
+                      <input type="number" name="weight" id="weight" autocomplete="off" required>
+                       <span>
+                          kg
+                       </span>
+                  </div>
+                  
+                  
+              </div>
+
+              <div class="input-box">
+                  <label for="height" id>Altura em metros</label>
+
+                  <div class="input-field">
+                      <i class="fa-solid fa-ruler"></i>
+                      <input type="number" id="height" step="0.01" name="height" autocomplete="off" required>
+                       <span>
+                          m
+                       </span>
+                  </div>                                       
+              </div>
+
+
+              <div class="idade">
+                <label for="age">Sua idade</label>
+
+                <div class="idade-field">
+                    <input type="number" id="ageinput" step="0.01" name="age" autocomplete="off" required>
+                     <span>
+                     </span>
+                </div>                                       
+            </div>
+
+
+
+              <button id="calculate">
+                  Calcular
+              </button>
+
+          </form>
+
+          <div id="info" class="hidden">
+              <div id="result">
+                  <div id="bmi">
+                      <span id="value"></span>
+                      <span>Seu IMC</span>
+                  </div>
+
+                  <div id="description">
+                      <span></span>
+                  </div>
+                  
+              </div>
+          
+         
+
+          <div id="moreinfo">
+              <a href="https://www.tjdft.jus.br/informacoes/programas-projetos-e-acoes/pro-vida/dicas-de-saude/pilulas-de-saude/o-que-o-indice-de-massa-corporal-imc-diz-sobre-sua-saude#:~:text=Criado%20no%20s%C3%A9culo%2019%20pelo,n%C3%A3o%20com%20o%20peso%20ideal.&text=Muitas%20pessoas%20buscam%20descobrir%20seu,espec%C3%ADfica%20ou%20uma%20atividade%20f%C3%ADsica." target="_blank">Mais informações sobre o IMC
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+                  
+           </div>
+          </div>
+          
+  </section>
+      
+</main>
+  <script src="/script_imc.js"></script>
+</body>
