@@ -204,10 +204,10 @@
 
 
 
-        <% } else if(task !==null){ %>
+        <% } else if( taskUpdate !== null){ %>
           <div id="new-fade"></div>
           <!-- Form de criação de Task -->
-          <form action="/app/updateTask/<%= task._id %>" method="post">
+          <form action="/app/updateTask/<%= taskUpdate._id %>" method="post">
             <!-- Criação da task -->
             <div id="new-modal">
               <div class="modal-header">
@@ -220,27 +220,27 @@
                 <div class="new-task">
                   <h3>Adicionar nova tarefa</h3>
                   <input type="text" id="task" step="0.01" name="task"
-                    value="<%= task.task %>"><!-- input de conteúdo da task -->
+                    value="<%= taskUpdate.task %>"><!-- input de conteúdo da task -->
                 </div>
 
                 <div class="task-category">
                   <h3>Selecione a categoria</h3>
                   <select name="categoria" id="categoria">
                     <option>Selecione uma opção</option>
-                    <option value="Trabalho" <% if (task.categoria==='Trabalho' ) { %>selected<% } %>>Trabalho</option>
-                    <option value="Lazer" <% if (task.categoria==='Lazer' ) { %>selected<% } %>>Lazer</option>
-                    <option value="Exercícios" <% if (task.categoria==='Exercícios' ) { %>selected<% } %>>Exercícios
+                    <option value="Trabalho" <% if (taskUpdate.categoria==='Trabalho' ) { %>selected<% } %>>Trabalho</option>
+                    <option value="Lazer" <% if (taskUpdate.categoria==='Lazer' ) { %>selected<% } %>>Lazer</option>
+                    <option value="Exercícios" <% if (taskUpdate.categoria==='Exercícios' ) { %>selected<% } %>>Exercícios
                     </option>
-                    <option value="Dieta" <% if (task.categoria==='Dieta' ) { %>selected<% } %>>Dieta</option>
+                    <option value="Dieta" <% if (taskUpdate.categoria==='Dieta' ) { %>selected<% } %>>Dieta</option>
                   </select>
                 </div>
 
                 <div class="task-date">
                   <h3>Data da tarefa</h3>
-                  <input type="date" id="Date" name="DateTask" value="<%= task.date.toISOString().split('T')[0] %>"
+                  <input type="date" id="Date" name="DateTask" value="<%= taskUpdate.date.toISOString().split('T')[0] %>"
                     required>
                   <!-- Converter a string de hora no formato HH:mm para o formato do campo time -->
-                  <% const timeArray=task.time.split(':'); %>
+                  <% const timeArray=taskUpdate.time.split(':'); %>
                     <% const formattedTime=timeArray[0] + ':' + timeArray[1]; %>
 
                       <!-- Use a string de hora formatada no campo de entrada time -->
@@ -249,13 +249,13 @@
 
                 <div class="task-notifications">
                   <h5>Ativar notificações?</h5>
-                  <input type="checkbox" id="checkbox" name="checkbox" <% if (task.notifications) { %>checked<% } %>>
+                  <input type="checkbox" id="checkbox" name="checkbox" <% if (taskUpdate.notifications) { %>checked<% } %>>
                     <i class="fa-solid fa-bell"></i>
                 </div>
 
                 <div class="task-notes">
                   <h5>Anotações extras</h5>
-                  <textarea id="notes" name="notes" rows="4" cols="50"><%= task.notes %></textarea>
+                  <textarea id="notes" name="notes" rows="4" cols="50"><%= taskUpdate.notes %></textarea>
                 </div>
 
                 <div class="modal-buttons">
