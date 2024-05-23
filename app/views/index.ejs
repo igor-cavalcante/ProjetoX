@@ -64,81 +64,106 @@
     <h1>Suas tarefas</h1>
 
     <div id="selection">
-      <div class="input-box">
-        <div class="input-field">
-          <i class="fa-solid fa-calendar-days open-modal-button"></i> <!-- Movido o ícone de calendário aqui -->
-          <input type="text" id="search" step="0.01" name="search" autocomplete="off" plarequired
-            placeholder="Digite uma tarefa aqui">
-          <span></span>
-          <i class="fa-solid fa-magnifying-glass"></i>
+      <form action="/app/search" method="get">
+        <div class="input-box">
+          <div class="input-field">
+            <i class="fa-solid fa-calendar-days open-modal-button"></i> <!-- Movido o ícone de calendário aqui -->
+            <input type="text" id="search" step="0.01" name="search" autocomplete="off" plarequired
+              placeholder="Digite uma tarefa aqui">
+            <span></span>
+            <button id="searchButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+      </form>
+
+      <div id="fade" class="hide"></div>
+      <div id="modal" class="hide">
+        <div class="modal-header">
+          <h2 style="color: #49DBC1">Calendário</h2>
+          <i class="fa-solid fa-circle-xmark"></i>
         </div>
+        <div class="modal-body">
+          <div class="calendario">
+            <header>
+              <h3 id="header"></h3>
+              <nav>
+                <button id="anterior"></button>
+                <button id="proximo"></button>
+              </nav>
+            </header>
 
-        <div id="fade" class="hide"></div>
-        <div id="modal" class="hide">
-          <div class="modal-header">
-            <h2 style="color: #49DBC1">Calendário</h2>
-            <i class="fa-solid fa-circle-xmark"></i>
+            <section>
+              <ul class="dias">
+                <li>Dom</li>
+                <li>Seg</li>
+                <li>Ter</li>
+                <li>Quar</li>
+                <li>Quin</li>
+                <li>Sex</li>
+                <li>Sab</li>
+              </ul>
+              <ul class="datas"></ul>
+            </section>
           </div>
-          <div class="modal-body">
-            <div class="calendario">
-              <header>
-                <h3 id="header"></h3>
-                <nav>
-                  <button id="anterior"></button>
-                  <button id="proximo"></button>
-                </nav>
-              </header>
 
-              <section>
-                <ul class="dias">
-                  <li>Dom</li>
-                  <li>Seg</li>
-                  <li>Ter</li>
-                  <li>Quar</li>
-                  <li>Quin</li>
-                  <li>Sex</li>
-                  <li>Sab</li>
-                </ul>
-                <ul class="datas"></ul>
-              </section>
-            </div>
-
-            <form id="searchForm" action="/search" method="POST">
-              <button type="submit" id="btn-pesquisar">Pesquisar</button>
-            </form>
-          </div>
+          <form id="searchForm" action="/search" method="POST">
+            <button type="submit" id="btn-pesquisar">Pesquisar</button>
+          </form>
         </div>
       </div>
+    </div>
     </div>
 
 
     <div id="buttons">
-      <div class="button">
-        <i class="fa-solid fa-list-check"></i>
-        <label for="button-label">Tarefas</label>
-      </div>
-      <div class="button">
-        <i class="fa-solid fa-dumbbell"></i>
-        <label for="button-label">Treino</label>
-      </div>
-      <div class="button">
-        <i class="fa-solid fa-gamepad"></i>
-        <label for="button-label">Lazer</label>
-      </div>
-      <div class="button">
-        <i class="fa-solid fa-apple-whole"></i>
-        <label for="button-label">Dieta</label>
-      </div>
+
+      <!-- <a href="/app/search?categoria=Lazer" class="category-link"> -->
+        <div class="button">
+          <i class="fa-solid fa-gamepad"></i>
+          <label for="button-label">Lazer</label>
+        </div>
+      <!-- </a> -->
+
+
+      <!-- <a href="/app/search?categoria=Trabalho" class="category-link"> -->
+        <div class="button">
+          <i class="fa-solid fa-list-check"></i>
+          <label for="button-label">Trabalho</label>
+        </div>
+      <!-- </a> -->
+
+
+      <!-- <a href="/app/search?categoria=Dieta" class="category-link"> -->
+        <div class="button">
+          <i class="fa-solid fa-apple-whole"></i>
+          <label for="button-label">Dieta</label>
+        </div>
+      <!-- </a> -->
+
+      <!-- <a href="/app/search?categoria=Exercícios" class="category-link"> -->
+        <div class="button">
+          <i class="fa-solid fa-dumbbell"></i>
+          <label for="button-label">Exercícios</label>
+        </div>
+      <!-- </a> -->
+
+
     </div>
+
+
 
     <div id="task-space">
       <ul id="Lista">
         <% TaskList.forEach((task)=> { %>
-          <li>
-            <%= task.task %> |
-              <%= new Date(task.date).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })%> |
+          <li class="check-<%= task.check %>">
+            <a href="/check/<%= task._id %>" class="check-<%= task.check %>">
+              <span>
+                <%= task.task %> -
                 <%= task.time%>
-                  <a class="fas fa-edit edit-icon" id="UpdateTask" href="/app/getByID/<%= task._id%>/update"></a>
+                <%= task.check%>
+                <!-- <%= new Date(task.date).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })%>  -->
+              </span>
+            </a>
+                 <a class="fas fa-edit edit-icon" id="UpdateTask" href="/app/getByID/<%= task._id%>/update"></a>
                   <a class="fas fa-trash-alt delete-icon" href="/app/deleteTask/<%= task._id %>"></a>
           </li>
           <% })%>
@@ -184,7 +209,7 @@
 
               <div class="task-notifications">
                 <h5>Ativar notificações?</h5>
-                <input type="checkbox" id="checkbox">
+                <input type="checkbox" id="checkbox" name="checkbox">
                 <i class="fa-solid fa-bell"></i>
               </div>
 
@@ -204,7 +229,7 @@
 
 
 
-        <% } else if( taskUpdate !== null){ %>
+        <% } else if( taskUpdate !==null){ %>
           <div id="new-fade"></div>
           <!-- Form de criação de Task -->
           <form action="/app/updateTask/<%= taskUpdate._id %>" method="post">
@@ -227,9 +252,11 @@
                   <h3>Selecione a categoria</h3>
                   <select name="categoria" id="categoria">
                     <option>Selecione uma opção</option>
-                    <option value="Trabalho" <% if (taskUpdate.categoria==='Trabalho' ) { %>selected<% } %>>Trabalho</option>
+                    <option value="Trabalho" <% if (taskUpdate.categoria==='Trabalho' ) { %>selected<% } %>>Trabalho
+                    </option>
                     <option value="Lazer" <% if (taskUpdate.categoria==='Lazer' ) { %>selected<% } %>>Lazer</option>
-                    <option value="Exercícios" <% if (taskUpdate.categoria==='Exercícios' ) { %>selected<% } %>>Exercícios
+                    <option value="Exercícios" <% if (taskUpdate.categoria==='Exercícios' ) { %>selected<% } %>
+                        >Exercícios
                     </option>
                     <option value="Dieta" <% if (taskUpdate.categoria==='Dieta' ) { %>selected<% } %>>Dieta</option>
                   </select>
@@ -237,8 +264,8 @@
 
                 <div class="task-date">
                   <h3>Data da tarefa</h3>
-                  <input type="date" id="Date" name="DateTask" value="<%= taskUpdate.date.toISOString().split('T')[0] %>"
-                    required>
+                  <input type="date" id="Date" name="DateTask"
+                    value="<%= taskUpdate.date.toISOString().split('T')[0] %>" required>
                   <!-- Converter a string de hora no formato HH:mm para o formato do campo time -->
                   <% const timeArray=taskUpdate.time.split(':'); %>
                     <% const formattedTime=timeArray[0] + ':' + timeArray[1]; %>
@@ -249,7 +276,8 @@
 
                 <div class="task-notifications">
                   <h5>Ativar notificações?</h5>
-                  <input type="checkbox" id="checkbox" name="checkbox" <% if (taskUpdate.notifications) { %>checked<% } %>>
+                  <input type="checkbox" id="checkbox" name="checkbox" <% if (taskUpdate.notifications) { %>checked<% }
+                    %>>
                     <i class="fa-solid fa-bell"></i>
                 </div>
 

@@ -2,6 +2,13 @@ const { render } = require("ejs");
 const User = require("../models/user");
 const passport = require('passport');
 
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).send("Acesso negado");
+};
+
 //end point para ir para o form de login
 const showLoginForm = async (req, res) => {
   try {
@@ -12,7 +19,7 @@ const showLoginForm = async (req, res) => {
 };
 const loginUser = (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/perfil",
+    successRedirect: "/app/task",
     failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);
@@ -26,6 +33,7 @@ const perfil = async (req, res) => {
   const id = req.user.id;
 
   const user = await User.findById(id, '-password');
+
   if (!user) {
       return res.status(404).send("Usuário não encontrado!");
   }
@@ -46,6 +54,7 @@ const logoutUser = (req, res, next) => {
 };
 
 module.exports = {
+  isAuthenticated,
   perfil,
   showLoginForm,
   loginUser,

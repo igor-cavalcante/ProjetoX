@@ -130,6 +130,13 @@
 
 
  /* Botões de seleção */
+
+ #searchButton{
+  background: none;
+  cursor: pointer;
+  border: none;
+ }
+
  #buttons {
    display: flex;
    justify-content: center;
@@ -221,7 +228,7 @@
 
 a{
   text-decoration: none;
-  color:var(--text-primary);;
+  color:var(--text-primary);
 }
 
  #Lista li a:hover {
@@ -253,6 +260,53 @@ a{
 
 
  }
+ 
+ ul li.check-false,
+ ul li.check-true {
+  position: relative; /* Necessário para posicionar os pseudo-elementos corretamente */
+  display: flex; /* Usa flexbox para alinhar itens */
+  align-items: center; /* Centraliza verticalmente os itens */
+}
+
+/* posição do elemento dentro da lista */
+ul li a.check-true::before, 
+ul li a.check-false::before { 
+  content: "";
+  position: absolute; /* Posiciona o pseudo-elemento relativo ao pai */
+  left: 20px; /* Ajusta a distância da esquerda conforme necessário */
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajusta a posição vertical */
+}
+
+
+ul li a.check-true::before { 
+  border: rgb(0, 156, 107) solid;
+  height: 15px;
+  width: 7px;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-50%) rotate(45deg); /* Adiciona a rotação */
+}
+
+ul li a.check-true {
+  text-decoration: line-through;
+  color: rgb(0, 156, 107);
+  padding-left: 1rem; /* Adiciona espaço para o pseudo-elemento */
+}
+
+ul li a.check-false::before { 
+  border: rgb(7, 7, 7) solid;
+  height: 16px;
+  width: 16px;
+  border-width: 2px 2px 2px 2px;
+}
+
+ul li a.check-false {
+  color: var(--text-primary);
+  padding-left: 1rem; /* Adiciona espaço para o pseudo-elemento */
+}
+
+
+
 
  .dark {
    --text-primary: #b6b6b6;

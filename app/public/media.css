@@ -267,6 +267,8 @@
         bottom: 0;
         width: 100vw;
         height: 5rem;
+        z-index: 1000; /* Define um z-index alto para garantir que a navbar fique acima da lista */
+        position: fixed; /* Mantém a navbar fixa na parte inferior da tela */
     }
 
     .logo {
