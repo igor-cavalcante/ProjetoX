@@ -5,8 +5,6 @@ const ConnectToDataBase = require("./database/config"); //importando base de dad
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const RedisStore = require("connect-redis")(session);
-const redis = require("redis");
 
 require("./controller/Auth")(passport);
 
