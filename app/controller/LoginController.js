@@ -20,7 +20,7 @@ const showLoginForm = async (req, res) => {
 const loginUser = (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/app/task",
-    failureRedirect: "/login",
+    failureRedirect: "/Login",
     failureFlash: true,
   })(req, res, next);
 };
