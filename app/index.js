@@ -5,7 +5,8 @@ const ConnectToDataBase = require("./database/config"); //importando base de dad
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const RedisStore = require("connect-redis")(session); // Importe o Connect-Redis
+const RedisStore = require("connect-redis")(session);
+const redis = require("redis");
 
 require("./controller/Auth")(passport);
 
@@ -22,23 +23,12 @@ app.set("view engine", "ejs"); //setando a engine ejs
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
 
-
-// Sessão com Redis como armazenamento
-const redisClient = require("redis").createClient({
-  // Configure conforme as informações do seu servidor Redis
-  host: "localhost",
-  port: 6379, // Porta do servidor Redis
-  // password: "sua_senha_do_redis", // Se necessário
-});
 //sessão
-app.use(
-  session({
-    store: new RedisStore({ client: redisClient }), // Use RedisStore
-    secret: "AKDANFUWMDAHjadsah155812ad", // Use a mesma secret key do .env
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+app.use(session({
+  secret: 'seu-segredo',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
