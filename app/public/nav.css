@@ -6,8 +6,6 @@
     overflow: scroll;
     z-index: 1000; /* Define um z-index alto para garantir que a navbar fique acima da lista */
     height: 100%;
-
-
 }
 
 .navbar-nav {

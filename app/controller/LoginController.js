@@ -45,18 +45,10 @@ const perfil = async (req, res) => {
   }
 };
 
-const logoutUser = (req, res, next) => {
-  req.logout((err) => {
-      if (err) return next(err);
-      req.flash('success_msg', 'Você saiu do sistema');
-      res.redirect('/login');
-  });
-};
 
 module.exports = {
   isAuthenticated,
   perfil,
   showLoginForm,
   loginUser,
-  logoutUser,
 };

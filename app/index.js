@@ -5,6 +5,7 @@ const ConnectToDataBase = require("./database/config"); //importando base de dad
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
+const MongoStore = require('connect-mongo'); // importar connect-mongo
 
 require("./controller/Auth")(passport);
 
@@ -22,10 +23,16 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
 
 //sessão
+//sessão
 app.use(session({
-  secret: 'seu-segredo',
+  secret:'seu-segredo',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: `mongodb+srv://user:I09HMPwbPVNAZOwd@projetox.a2ui9up.mongodb.net/?retryWrites=true&w=majority`, // URL do seu MongoDB Atlas
+    ttl: 5 * 60, // 5 minutos em segundos
+    autoRemove: 'native' // remove sessões automaticamente
+  })
 }));
 
 app.use(passport.initialize());

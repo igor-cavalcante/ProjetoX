@@ -3,6 +3,7 @@ const TaskController = require("../controller/TaskController");
 const LoginController = require("../controller/LoginController");
 const RegisterController = require("../controller/RegisterController");
 const passport = require("passport");
+const MongoStore = require('connect-mongo');
 
 //rotas da task
 routes.get("/", async (req, res) => {
@@ -30,7 +31,7 @@ routes.get("/app/calculadora", TaskController.showCalculadora);
 routes.get("/login", LoginController.showLoginForm);
 routes.post("/login/user", LoginController.loginUser); // Login de usuário
 routes.get("/perfil", LoginController.perfil);
-routes.get("/logout", LoginController.logoutUser);
+routes.get("/logout");
 routes.post("/register", RegisterController.registerUser);
 
 module.exports = routes;
