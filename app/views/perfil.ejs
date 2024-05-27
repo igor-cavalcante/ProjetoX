@@ -79,7 +79,7 @@
           <section class="dados-user">
             <h1 class="info task"> 4 taréfas concluídas hoje</h1>
             <p class="info">
-              <a href="#" class="link-task">Ver todas as tarefas concluidas
+              <a href="/app/task" class="link-task">Ver todas as tarefas concluidas
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </p>
@@ -140,12 +140,12 @@
           <section class="dados-imc">
             <div class="info task-imc">
               <p> Seu imc é
-                <span> 24.00</span>
+                <span> <%= imc %></span>
               </p>
             </div>
-  
+            
             <div class="info task-imc ">
-              <p>Você está no peso ideal</p>
+              <p><%= description %></p>
             </div>
   
           </section>

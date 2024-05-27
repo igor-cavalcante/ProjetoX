@@ -25,33 +25,11 @@ const loginUser = (req, res, next) => {
   })(req, res, next);
 };
 
-const perfil = async (req, res) => {
-  if (!req.isAuthenticated()) {
-      return res.status(401).send("Acesso negado");
-  }
 
-  const id = req.user.id;
-
-  const user = await User.findById(id, '-password');
-
-  if (!user) {
-      return res.status(404).send("Usuário não encontrado!");
-  }
-
-  try {
-     // Extrair as iniciais do nome do usuário
-     const nomeCompleto = user.name; // Supondo que você tenha um campo `nome` no seu modelo de usuário
-     const iniciais = nomeCompleto.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-      return res.render('perfil', { user,iniciais });
-  } catch (error) {
-      res.status(500).send(error.message);
-  }
-};
 
 
 module.exports = {
   isAuthenticated,
-  perfil,
   showLoginForm,
   loginUser,
 };

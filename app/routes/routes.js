@@ -2,8 +2,8 @@ const routes = require("express").Router();
 const TaskController = require("../controller/TaskController");
 const LoginController = require("../controller/LoginController");
 const RegisterController = require("../controller/RegisterController");
-const passport = require("passport");
-const MongoStore = require('connect-mongo');
+const ImcController = require("../controller/ImcController");
+const PerfilController = require("../controller/PerfilController");
 
 //rotas da task
 routes.get("/", async (req, res) => {
@@ -26,11 +26,12 @@ routes.get("/check/:id", TaskController.taskCheck);
 
 //rotas da calculadora
 routes.get("/app/calculadora", TaskController.showCalculadora);
+routes.post("/app/calculadora/imc",ImcController.createImc);
 
 //rotas do login e register
 routes.get("/login", LoginController.showLoginForm);
 routes.post("/login/user", LoginController.loginUser); // Login de usuário
-routes.get("/perfil", LoginController.perfil);
+routes.get("/perfil", PerfilController.perfil);
 routes.get("/logout");
 routes.post("/register", RegisterController.registerUser);
 

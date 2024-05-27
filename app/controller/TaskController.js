@@ -220,7 +220,9 @@ const taskCheck = async (req,res) => {
 
 const showCalculadora = async (req, res) => {
   try {
-    return res.render("Calculadora");
+    return res.render("Calculadora",{
+      bmi: null,
+    });
   } catch (error) {
     return res.status(500).send(error.message);
   }

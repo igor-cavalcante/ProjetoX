@@ -1,6 +1,5 @@
 const { render } = require("ejs");
 const bcrypt = require("bcrypt");//modulo para criptografia de senha 
-const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 //end point para ir para o form de login
