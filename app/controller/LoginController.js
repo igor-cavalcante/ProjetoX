@@ -39,7 +39,10 @@ const perfil = async (req, res) => {
   }
 
   try {
-      return res.render('perfil', { user });
+     // Extrair as iniciais do nome do usuário
+     const nomeCompleto = user.name; // Supondo que você tenha um campo `nome` no seu modelo de usuário
+     const iniciais = nomeCompleto.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      return res.render('perfil', { user,iniciais });
   } catch (error) {
       res.status(500).send(error.message);
   }

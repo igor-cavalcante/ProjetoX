@@ -1,12 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Perfil</title>
-</head>
-<body>
-    <h1>Perfil do Usuário</h1>
-    <p>Nome: <%= user.name %></p>
-    <p>Email: <%= user.email %></p>
-</body>
-</html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile User</title>
+    <script defer src="./src/index.js"></script>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/style_profile.css" />
+    <link rel="stylesheet" href="/media_profile.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="logo">
+          <a href="#" class="nav-link">
+            <span class="link-text logo-text">Projeto X</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="link-text">Consultar</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-person-running"></i>
+            <span class="link-text">Exercícios</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa-regular fa-file"></i>
+            <span class="link-text">Tarefas</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-calculator"></i>
+            <span class="link-text">Calculadora IMC</span>
+          </a>
+        </li>
+  
+        <li class="nav-item" id="themeButton">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <span class="link-text">Temas</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  
+    <main id="container">
+  
+      <div class="container-profile">
+        <div class="img-perfil">
+            <%= iniciais %>
+        </div>
+  
+        <div class="dados-container">
+          <section class="dados-user">
+            <p class="info full-name"><%=  user.name%></p>
+            <p class="info email">
+              <i class="fa-regular fa-envelope"></i>
+              <%= user.email %>
+            </p>
+          </section>
+  
+          <section class="dados-user">
+            <h1 class="info task"> 4 taréfas concluídas hoje</h1>
+            <p class="info">
+              <a href="#" class="link-task">Ver todas as tarefas concluidas
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </p>
+          </section>
+  
+          <section class="dados-user">
+            <p class="info task"> Objetivo diário 4/5 tarefas</p>
+  
+            <p class="info task">Você está quase la continue !</p>
+            </p>
+          </section>
+  
+          <section class="task-proguession">
+            <hr>
+            <p class="info-task">Sua seguencia de habitos saudaveis esta otima ! </p>
+  
+            <div class="grafico">
+  
+              <div class="task-wrapper">
+                <div class="task-bar">
+                  <div class="progress-bar" style="width: 80%">90%</div>
+                </div>
+                <span>seg : 4/5</span>
+              </div>
+  
+              <div class="task-wrapper">
+                <div class="task-bar">
+                  <div class="progress-bar" style="width: 70%">70%</div>
+                </div>
+                <span>Ter : 7/10</span>
+              </div>
+  
+              <div class="task-wrapper">
+                <div class="task-bar">
+                  <div class="progress-bar" style="width: 50%">50%</div>
+                </div>
+                <span>Qua : 5/10</span>
+              </div>
+  
+              <div class="task-wrapper">
+                <div class="task-bar">
+                  <div class="progress-bar" style="width: 50%">50%</div>
+                </div>
+                <span>Qui : 3/6</span>
+              </div>
+  
+              <div class="task-wrapper">
+                <div class="task-bar">
+                  <div class="progress-bar" style="width: 90%">80%</div>
+                </div>
+                <span>Sex : 6/8</span>
+              </div>
+  
+            </div>
+            <hr>
+          </section>
+  
+          <section class="dados-imc">
+            <div class="info task-imc">
+              <p> Seu imc é
+                <span> 24.00</span>
+              </p>
+            </div>
+  
+            <div class="info task-imc ">
+              <p>Você está no peso ideal</p>
+            </div>
+  
+          </section>
+          
+          <div class="linha">
+            <hr>
+          </div>
+  
+        </div>
+      </div>
+  
+    </main>
+  
+    <script src="/script_imc.js"></script>
+  </body>

@@ -1,0 +1,254 @@
+/* Configurações iniciais */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+:root {
+  font-size: 16px;
+  font-family: "Open Sans";
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --bg-third: var(#000000);
+
+  --transition-speed: 600ms;
+}
+
+* {
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-secondary);
+}
+
+/* css perfil */
+main {
+  margin-left: 20rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
+  width: 100%;
+  height: 50rem;
+  margin-bottom: 100px; /* Adiciona um espaço inferior equivalente à altura da barra de navegação */
+}
+
+.container-profile {
+  margin-top: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-secondary);
+  background-color: var(--bg-third);
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 1px var(--bg-primary);
+  width: 100%;
+  height: 100%;
+}
+
+#container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to top, rgba(73, 219, 193, 1), #73ffe1);
+  clip-path: circle(80% at 50% 5px);
+  z-index: -1; /* Adicionado */
+}
+
+.img-perfil {
+  display: flex;
+  color: var(--text-secondary);
+  width: 100px;
+  height: 100px;
+  background-color: #49dbc1;
+  border: 2px solid var(--text-secondary);
+  /* box-shadow: 0 8px 30px var(--text-secondary);   sombra opcional*/
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  position:absolute; /* Torna a imagem fixa */
+}
+
+.dados-container {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dados-user {
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.info i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.full-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.link-task {
+  text-decoration: none;
+  color: rgb(255, 111, 0);
+  font-size: 1rem;
+}
+
+.task-proguession {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Adiciona flex-direction para alinhar os itens verticalmente */
+  /* align-items: center;  Centraliza os itens horizontalmente */
+}
+
+.task-proguession .info-task {
+  margin: 10px auto; /* Certifique-se de que o margin está centralizado */
+}
+
+.task-proguession .info-task p {
+  justify-content: center;
+  align-items: center;
+}
+
+.grafico {
+  padding: 10px;
+  background-color: rgba(164, 152, 152, 0.1);
+  border-radius: 20px;
+  width: 90%; /* Defina a largura desejada */
+  margin: 0 auto; /* Centraliza o elemento */
+  margin-bottom: 20px;
+}
+.task-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-wrapper span {
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight:bolder;
+}
+
+.task-bar {
+  position: relative;
+  height: 25px;
+  width: 75%;
+  background-color: #b6b6b6;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  z-index: 1;
+}
+.progress-bar {
+  height: 100%;
+  border-radius: 16px;
+  text-align: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background-color: #49dbc1;
+}
+
+
+
+.linha{
+  width: 100%;
+}
+
+.dados-imc {
+  display: flex;
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  gap: 20px; /* Espaçamento entre os itens */
+}
+
+.info.task-imc {
+  padding: 10px; /* Adiciona preenchimento interno */
+  border-radius: 8px; /* Adiciona cantos arredondados */
+  text-align: center;
+}
+
+.info.task-imc span{
+  color: #49dbc1;
+}
+
+.frase p{
+  color: #49dbc1;
+}
+
+/* fim css perfil */
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+.dark {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --bg-third: #23232e;
+  --special: #49dbc1;
+}
+
+.light {
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --text-tertiary: #d0cdd3;
+  --bg-primary: #ffffff;
+  --bg-secondary: #e4e4e4;
+  --bg-third: #ffffff;
+  --special: #49dbc1;
+}
+
+.theme-icon {
+  display: none;
+}
+
+.dark #darkIcon {
+  display: block;
+}
+
+.light #lightIcon {
+  display: block;
+}
