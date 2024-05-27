@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To do List</title>
+  <script defer src="/scriptTask.js"></script>
   <link rel="stylesheet" href="/nav.css">
   <link rel="stylesheet" href="/modals.css">
   <link rel="stylesheet" href="/style.css" />
@@ -113,43 +113,38 @@
     </div>
     </div>
 
-
     <div id="buttons">
 
       <!-- <a href="/app/search?categoria=Lazer" class="category-link"> -->
-        <div class="button">
-          <i class="fa-solid fa-gamepad"></i>
-          <label for="button-label">Lazer</label>
-        </div>
+      <div class="button">
+        <i class="fa-solid fa-gamepad"></i>
+        <label for="button-label">Lazer</label>
+      </div>
       <!-- </a> -->
 
 
       <!-- <a href="/app/search?categoria=Trabalho" class="category-link"> -->
-        <div class="button">
-          <i class="fa-solid fa-list-check"></i>
-          <label for="button-label">Trabalho</label>
-        </div>
+      <div class="button">
+        <i class="fa-solid fa-list-check"></i>
+        <label for="button-label">Trabalho</label>
+      </div>
       <!-- </a> -->
 
 
       <!-- <a href="/app/search?categoria=Dieta" class="category-link"> -->
-        <div class="button">
-          <i class="fa-solid fa-apple-whole"></i>
-          <label for="button-label">Dieta</label>
-        </div>
+      <div class="button">
+        <i class="fa-solid fa-apple-whole"></i>
+        <label for="button-label">Dieta</label>
+      </div>
       <!-- </a> -->
 
       <!-- <a href="/app/search?categoria=Exercícios" class="category-link"> -->
-        <div class="button">
-          <i class="fa-solid fa-dumbbell"></i>
-          <label for="button-label">Exercícios</label>
-        </div>
+      <div class="button">
+        <i class="fa-solid fa-dumbbell"></i>
+        <label for="button-label">Exercícios</label>
+      </div>
       <!-- </a> -->
-
-
     </div>
-
-
 
     <div id="task-space">
       <ul id="Lista">
@@ -158,12 +153,12 @@
             <a href="/check/<%= task._id %>" class="check-<%= task.check %>">
               <span>
                 <%= task.task %> -
-                <%= task.time%>
-                <!-- <%= new Date(task.date).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })%>  -->
+                  <%= task.time%>
+                    <!-- <%= new Date(task.date).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })%>  -->
               </span>
             </a>
-                 <a class="fas fa-edit edit-icon" id="UpdateTask" href="/app/getByID/<%= task._id%>/update"></a>
-                  <a class="fas fa-trash-alt delete-icon" href="/app/deleteTask/<%= task._id %>"></a>
+            <a class="fas fa-edit edit-icon" id="UpdateTask" href="/app/getByID/<%= task._id%>/update"></a>
+            <a class="fas fa-trash-alt delete-icon" href="/app/deleteTask/<%= task._id %>"></a>
           </li>
           <% })%>
       </ul>
@@ -177,6 +172,7 @@
         <form action="/app/task/create" method="post">
           <!-- Criação da task -->
           <div id="new-modal">
+
             <div class="modal-header">
               <h2 style="color: #49DBC1">Adicionar nova tarefa</h2>
               <a class="fa-solid fa-circle-xmark" href="/app/task"></a><!-- button de sair do modal-->
@@ -214,14 +210,17 @@
 
               <div class="task-notes">
                 <h5>Anotaçoes extras</h5>
-                <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+                <textarea id="notes" name="notes" rows="4" cols="50" style="width: 269px; height: 95px;"></textarea>
               </div>
 
               <div class="modal-buttons">
-                <input type="submit" value="Enviar" />
+                <input class="button-submit" type="submit" value="Enviar" />
                 <!-- <input type="reset" value="Cancelar" /> -->
               </div>
+
             </div>
+          </div>
+
         </form>
 
 

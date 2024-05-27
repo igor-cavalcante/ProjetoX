@@ -305,7 +305,9 @@ ul li a.check-false {
   padding-left: 1rem; /* Adiciona espaço para o pseudo-elemento */
 }
 
-
+#task{
+ color:  var(--text-secondary);
+}
 
 
  .dark {
