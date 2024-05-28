@@ -13,23 +13,23 @@ const perfil = async (req, res) => {
   }
 
   const id = req.user.id;
-  console.log("ID do usuário:", id);
+  // console.log("ID do usuário:", id);
 
   try {
     const user = await User.findById(id, "-password");
     if (!user) {
-      console.log("Usuário não encontrado:", id);
+      // console.log("Usuário não encontrado:", id);
       return res.status(404).send("Usuário não encontrado!");
     }
 
     // Buscar o IMC mais recente do usuário
     const recentImc = await Imc.findOne({ userId: id }).sort({ date: -1 });
-    console.log("IMC recente:", recentImc);
+    // console.log("IMC recente:", recentImc);
 
     // Parse apenas a data, sem hora
     const taskDate = new Date();
     taskDate.setUTCHours(0, 0, 0, 0); // Setar horas, minutos, segundos e milissegundos para zero
-    console.log("Data atual:", taskDate);
+    // console.log("Data atual:", taskDate);
 
     // Definir o fuso horário desejado
     const timezone = "America/Sao_Paulo"; // Altere para o fuso horário apropriado
@@ -82,7 +82,7 @@ const perfil = async (req, res) => {
       userId: id,
       date: taskDate,
     });
-    console.log("Todas as tarefas do usuário na data atual:", allTasks);
+    // console.log("Todas as tarefas do usuário na data atual:", allTasks);
 
     // Buscar tarefas concluídas da data atual em UTC
     const completedTasks = await Task.countDocuments({
@@ -90,10 +90,10 @@ const perfil = async (req, res) => {
       check: true,
       date: taskDate,
     });
-    console.log(
-      "Quantidade de tarefas concluídas na data atual em UTC:",
-      completedTasks
-    );
+    // console.log(
+    //   "Quantidade de tarefas concluídas na data atual em UTC:",
+    //   completedTasks
+    // );
 
     // Calcular o progresso diário
     const objetivoDiario = allTasks.length; // Objetivo diário é o total de tarefas para o dia
@@ -106,7 +106,7 @@ const perfil = async (req, res) => {
       .join("")
       .substring(0, 2)
       .toUpperCase();
-    console.log("Iniciais do nome:", iniciais);
+    // console.log("Iniciais do nome:", iniciais);
 
     return res.render("perfil", {
       user,
