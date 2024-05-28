@@ -2,6 +2,9 @@ const { render } = require("ejs");
 const User = require("../models/user");
 const Imc = require("../models/imc");
 const Task = require("../models/task");
+const moment = require("moment-timezone");
+
+
 
 const perfil = async (req, res) => {
   if (!req.isAuthenticated()) {
@@ -28,9 +31,13 @@ const perfil = async (req, res) => {
     taskDate.setUTCHours(0, 0, 0, 0); // Setar horas, minutos, segundos e milissegundos para zero
     console.log("Data atual:", taskDate);
 
-    // Obter a data atual
-    const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 = Domingo, 1 = Segunda-feira, ..., 6 = Sábado
+    // Definir o fuso horário desejado
+    const timezone = "America/Sao_Paulo"; // Altere para o fuso horário apropriado
+
+    // Obter a data atual no fuso horário definido
+    const today = moment().tz(timezone).startOf('day');
+    const dayOfWeek = today.day(); // 0 = Domingo, 1 = Segunda-feira, ..., 6 = Sábado
+    console.log("Data atual:", today.format());
 
     // Inicializar o array com valores padrão
     const completedTasksByDay = Array(7).fill({
@@ -41,19 +48,14 @@ const perfil = async (req, res) => {
 
     // Buscar tarefas por dia da semana
     for (let i = 0; i <= dayOfWeek; i++) {
-      const startOfDay = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() - dayOfWeek + i
-      );
-      const endOfDay = new Date(startOfDay);
-      endOfDay.setDate(endOfDay.getDate() + 1);
+      const startOfDay = today.clone().subtract(dayOfWeek - i, 'days').startOf('day');
+      const endOfDay = startOfDay.clone().endOf('day');
 
       const tasks = await Task.find({
         userId: id,
         date: {
-          $gte: startOfDay,
-          $lt: endOfDay,
+          $gte: startOfDay.toDate(),
+          $lt: endOfDay.toDate(),
         },
       });
 
