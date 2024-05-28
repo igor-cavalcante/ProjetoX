@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: `mongodb+srv://user:I09HMPwbPVNAZOwd@projetox.a2ui9up.mongodb.net/?retryWrites=true&w=majority`, // URL do seu MongoDB Atlas
-    ttl: 5 * 60, // 5 minutos em segundos
+    ttl: 10 * 60, // 5 minutos em segundos
     autoRemove: 'native' // remove sessões automaticamente
   })
 }));
