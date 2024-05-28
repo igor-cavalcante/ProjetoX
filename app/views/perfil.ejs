@@ -1,163 +1,180 @@
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile User</title>
-    <script defer src="./src/index.js"></script>
-    <link rel="stylesheet" href="/nav.css">
-    <link rel="stylesheet" href="/style_profile.css" />
-    <link rel="stylesheet" href="/media_profile.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  </head>
-  
-  <body>
-    <nav class="navbar">
-      <ul class="navbar-nav">
-        <li class="logo">
-          <a href="#" class="nav-link">
-            <span class="link-text logo-text">Projeto X</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/perfil" class="nav-link">
-            <i class="fa-regular fa-user"></i>
-            <span class="link-text">perfil</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-location-dot"></i>
-            <span class="link-text">Consultar</span>
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-person-running"></i>
-            <span class="link-text">Exercícios</span>
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a href="/app/task" class="nav-link">
-            <i class="fa-regular fa-file"></i>
-            <span class="link-text">Tarefas</span>
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a href="/app/calculadora" class="nav-link">
-            <i class="fa-solid fa-calculator"></i>
-            <span class="link-text">Calculadora IMC</span>
-          </a>
-        </li>
-  
-        <li class="nav-item" id="themeButton">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-circle-half-stroke"></i>
-            <span class="link-text">Temas</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  
-    <main id="container">
-  
-      <div class="container-profile">
-        <div class="img-perfil">
-            <%= iniciais %>
-        </div>
-  
-        <div class="dados-container">
-          <section class="dados-user">
-            <p class="info full-name"><%=  user.name%></p>
-            <p class="info email">
-              <i class="fa-regular fa-envelope"></i>
-              <%= user.email %>
-            </p>
-          </section>
-  
-          <section class="dados-user">
-            <h1 class="info task"> 4 taréfas concluídas hoje</h1>
-            <p class="info">
-              <a href="/app/task" class="link-task">Ver todas as tarefas concluidas
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            </p>
-          </section>
-  
-          <section class="dados-user">
-            <p class="info task"> Objetivo diário 4/5 tarefas</p>
-  
-            <p class="info task">Você está quase la continue !</p>
-            </p>
-          </section>
-  
-          <section class="task-proguession">
-            <hr>
-            <p class="info-task">Sua seguencia de habitos saudaveis esta otima ! </p>
-  
-            <div class="grafico">
-  
-              <div class="task-wrapper">
-                <div class="task-bar">
-                  <div class="progress-bar" style="width: 80%">90%</div>
-                </div>
-                <span>seg : 4/5</span>
-              </div>
-  
-              <div class="task-wrapper">
-                <div class="task-bar">
-                  <div class="progress-bar" style="width: 70%">70%</div>
-                </div>
-                <span>Ter : 7/10</span>
-              </div>
-  
-              <div class="task-wrapper">
-                <div class="task-bar">
-                  <div class="progress-bar" style="width: 50%">50%</div>
-                </div>
-                <span>Qua : 5/10</span>
-              </div>
-  
-              <div class="task-wrapper">
-                <div class="task-bar">
-                  <div class="progress-bar" style="width: 50%">50%</div>
-                </div>
-                <span>Qui : 3/6</span>
-              </div>
-  
-              <div class="task-wrapper">
-                <div class="task-bar">
-                  <div class="progress-bar" style="width: 90%">80%</div>
-                </div>
-                <span>Sex : 6/8</span>
-              </div>
-  
-            </div>
-            <hr>
-          </section>
-  
-          <section class="dados-imc">
-            <div class="info task-imc">
-              <p> Seu imc é
-                <span> <%= imc %></span>
-              </p>
-            </div>
-            
-            <div class="info task-imc ">
-              <p><%= description %></p>
-            </div>
-  
-          </section>
-          
-          <div class="linha">
-            <hr>
-          </div>
-  
-        </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile User</title>
+  <script defer src="./src/index.js"></script>
+  <link rel="stylesheet" href="/nav.css">
+  <link rel="stylesheet" href="/style_profile.css" />
+  <link rel="stylesheet" href="/media_profile.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="logo">
+        <a href="#" class="nav-link">
+          <span class="link-text logo-text">Projeto X</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/perfil" class="nav-link">
+          <i class="fa-regular fa-user"></i>
+          <span class="link-text">perfil</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-location-dot"></i>
+          <span class="link-text">Consultar</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-person-running"></i>
+          <span class="link-text">Exercícios</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/app/task" class="nav-link">
+          <i class="fa-regular fa-file"></i>
+          <span class="link-text">Tarefas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/app/calculadora" class="nav-link">
+          <i class="fa-solid fa-calculator"></i>
+          <span class="link-text">Calculadora IMC</span>
+        </a>
+      </li>
+
+      <li class="nav-item" id="themeButton">
+        <a href="#" class="nav-link">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span class="link-text">Temas</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main id="container">
+
+    <div class="container-profile">
+      <div class="img-perfil">
+        <%= iniciais %>
       </div>
-  
-    </main>
-  
-    <script src="/script_imc.js"></script>
-  </body>
+
+      <div class="dados-container">
+        <section class="dados-user">
+          <p class="info full-name">
+            <%= user.name%>
+          </p>
+          <p class="info email">
+            <i class="fa-regular fa-envelope"></i>
+            <%= user.email %>
+          </p>
+        </section>
+
+        <section class="dados-user">
+          <h1 class="info task">
+            <%= completedTasks %> taréfas concluídas hoje
+          </h1>
+          <p class="info">
+            <a href="/app/task" class="link-task">Ver todas as tarefas concluidas
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </section>
+
+        <section class="dados-user">
+          <p class="info task"> Objetivo diário <%= completedTasks %> /<%= objetivoDiario %> tarefas</p>
+
+          <p class="info task">parabêns vocÊ está no caminho certo !</p>
+          </p>
+        </section>
+
+        <section class="task-proguession">
+          <hr>
+          <p class="info-task">Sua seguencia de habitos saudaveis esta otima ! </p>
+
+
+          <div class="grafico">
+
+            <div class="task-wrapper">
+              <div class="task-bar">
+                <div class="progress-bar" style="width: <%=completedTasksByDay[0].percentage %>%">
+                  <%=completedTasksByDay[0].percentage %>%
+                </div>
+              </div>
+              <span>seg : <%= completedTasksByDay[0].completed %>/ <%= completedTasksByDay[0].total %></span>
+            </div>
+
+            <div class="task-wrapper">
+              <div class="task-bar">
+                <div class="progress-bar" style="width: <%=completedTasksByDay[1].percentage %>%">
+                  <%= completedTasksByDay[1].percentage %>%
+                </div>
+              </div>
+              <span>Ter : <%= completedTasksByDay[1].completed %>/ <%= completedTasksByDay[1].total %></span>
+            </div>
+
+            <div class="task-wrapper">
+              <div class="task-bar">
+                <div class="progress-bar" style="width: <%=completedTasksByDay[2].percentage %>%">
+                  <%=completedTasksByDay[2].percentage %>%
+                </div>
+              </div>
+              <span>Qua : <%= completedTasksByDay[2].completed %>/<%= completedTasksByDay[2].total %></span>
+            </div>
+
+            <div class="task-wrapper">
+              <div class="task-bar">
+                <div class="progress-bar" style="width: 0%">
+                  <%=completedTasksByDay[3].percentage %>%
+                </div>
+              </div>
+              <span>Qui : <%= completedTasksByDay[3].completed %>/<%= completedTasksByDay[3].total %></span>
+            </div>
+
+            <div class="task-wrapper">
+              <div class="task-bar">
+                <div class="progress-bar" style="width:  <%=completedTasksByDay[4].percentage %>%"> <%=completedTasksByDay[4].percentage %>%</div>
+              </div>
+              <span>Sex : <%= completedTasksByDay[4].completed %>/<%= completedTasksByDay[4].total %> </span>
+            </div>
+
+          </div>
+          <hr>
+        </section>
+
+        <section class="dados-imc">
+          <div class="info task-imc">
+            <p> Seu imc é
+              <span>
+                <%= imc %>
+              </span>
+            </p>
+          </div>
+
+          <div class="info task-imc ">
+            <p>
+              <%= description %>
+            </p>
+          </div>
+
+        </section>
+
+        <div class="linha">
+          <hr>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/script_imc.js"></script>
+</body>

@@ -122,16 +122,20 @@ const createTask = async (req, res) => {
     return res.redirect("/app/task");
   }
 
-  // Combine a data e a hora em um único objeto Date
-  let taskDate = new Date(DateTask);
-  if (horas) {
-    const [hours, minutes] = horas.split(":");
-    taskDate.setUTCHours(hours);
-    taskDate.setUTCMinutes(minutes);
-  } else {
-    taskDate.setUTCHours(0);
-    taskDate.setUTCMinutes(0);
-  }
+  // // Combine a data e a hora em um único objeto Date
+  // let taskDate = new Date(DateTask);
+  // if (horas) {
+  //   const [hours, minutes] = horas.split(":");
+  //   taskDate.setUTCHours(hours);
+  //   taskDate.setUTCMinutes(minutes);
+  // } else {
+  //   taskDate.setUTCHours(0);
+  //   taskDate.setUTCMinutes(0);
+  // }
+
+  // Parse apenas a data, sem hora
+  const taskDate = new Date(DateTask);
+  taskDate.setUTCHours(0, 0, 0, 0); // Setar horas, minutos, segundos e milissegundos para zero
 
   const taskData = {
     task,
@@ -157,16 +161,9 @@ const updateOneTask = async (req, res) => {
   try {
     const { task, categoria, DateTask, horas, checkbox, notes } = req.body;
 
-    // Combine a data e a hora em um único objeto Date
-    let taskDate = new Date(DateTask);
-    if (horas) {
-      const [hours, minutes] = horas.split(":");
-      taskDate.setUTCHours(hours);
-      taskDate.setUTCMinutes(minutes);
-    } else {
-      taskDate.setUTCHours(0);
-      taskDate.setUTCMinutes(0);
-    }
+    // Parse apenas a data, sem hora
+  const taskDate = new Date(DateTask);
+  taskDate.setUTCHours(0, 0, 0, 0); // Setar horas, minutos, segundos e milissegundos para zero
 
     const taskData = {
       task,
