@@ -1,6 +1,7 @@
 const express = require("express"); //importando o modulo express para criar o servidor local
 const path = require("path"); //importando modulo path do node
-const routes = require("./routes/routes"); //importando as rotas
+const routes = require("./routes/routes"); //importando as rotas gerais
+const routes_exercicios = require("./routes/routes_exercicios");
 const ConnectToDataBase = require("./database/config"); //importando base de dados
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -49,7 +50,8 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
+app.use(routes_exercicios);
 
 app.listen(port, () =>
-  console.log(`Rodando server express http://localhost:${port}/app/task`)
+  console.log(`Rodando server express http://localhost:${port}`)
 );
