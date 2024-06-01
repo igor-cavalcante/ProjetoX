@@ -1,12 +1,10 @@
-//Tema de cores
+// Tema de cores
 const themeMap = {
   dark: "light",
   light: "dark",
 };
 
-const theme =
-  localStorage.getItem("theme") ||
-  ((tmp = Object.keys(themeMap)[0]), localStorage.setItem("theme", tmp), tmp);
+const theme = localStorage.getItem("theme") || (Object.keys(themeMap)[0], localStorage.setItem("theme", Object.keys(themeMap)[0]), Object.keys(themeMap)[0]);
 const bodyClass = document.body.classList;
 bodyClass.add(theme);
 
@@ -20,10 +18,9 @@ function toggleTheme() {
 
 document.getElementById("themeButton").onclick = toggleTheme;
 
-//Modal Funcionando
-
+// Modal Funcionando
 const openModalButton = document.querySelector(".open-modal-button");
-const closeModalButton = document.querySelector(".fa-solid.fa-circle-xmark");
+const closeModalButton = document.querySelector(".fa-circle-xmark");
 const modal = document.querySelector("#modal");
 const fade = document.querySelector("#fade");
 
@@ -32,43 +29,15 @@ const toggleModal = () => {
   fade.classList.toggle("hide");
 };
 
-[openModalButton, closeModalButton, fade].forEach((el) => {
-  el.addEventListener("click", () => toggleModal());
+[openModalButton, closeModalButton, fade].forEach(el => {
+  el.addEventListener("click", toggleModal);
 });
 
-const openNewModalButton = document.getElementById("openNewModalButton");
-const closeNewModalButton = document.querySelector(
-  "#new-modal .fa-circle-xmark"
-);
-const newModal = document.querySelector("#new-modal");
-const newFade = document.querySelector("#new-fade");
-
-const toggleNewModal = () => {
-  newModal.classList.toggle("hide");
-  newFade.classList.toggle("hide");
-};
-
-openNewModalButton.addEventListener("click", toggleNewModal);
-closeNewModalButton.addEventListener("click", toggleNewModal);
-
-//Calendário Funcional
+// Calendário Funcional
 const datas = document.querySelector(".datas");
 const header = document.querySelector(".calendario h3");
 const nav = document.querySelectorAll("#anterior, #proximo");
-const meses = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
-];
+const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 let date = new Date();
 let month = date.getMonth();
@@ -87,15 +56,8 @@ function renderCalendar() {
   }
 
   for (let i = 1; i <= endDate; i++) {
-    let className =
-      i === date.getDate() &&
-      month === new Date().getMonth() &&
-      year === new Date().getFullYear()
-        ? ' class="today"'
-        : "";
-    datasHtml += `<li${className} data-date="${year}-${
-      month + 1
-    }-${i}">${i}</li>`;
+    let className = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? ' class="today"' : "";
+    datasHtml += `<li${className} data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">${i}</li>`;
   }
 
   for (let i = end; i < 6; i++) {
@@ -106,30 +68,29 @@ function renderCalendar() {
   header.textContent = `${meses[month]} ${year}`;
 
   // Adicione os ouvintes de evento para cada elemento de data no calendário
-  datas.querySelectorAll("li").forEach((li) => {
-    li.addEventListener("click", (e) => {
+  datas.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", e => {
       const selectedDate = e.target.getAttribute("data-date");
       document.getElementById("selectedDate").value = selectedDate; // Define o valor da data selecionada no campo de entrada
     });
   });
 }
 
-nav.forEach((nav) => {
-  nav.addEventListener("click", (e) => {
+nav.forEach(navButton => {
+  navButton.addEventListener("click", e => {
+    e.preventDefault(); 
     const btnId = e.target.id;
     if (btnId === "anterior" && month === 0) {
       year--;
-      month = 11; // Correção aqui, voltar para dezembro (índice 11)
+      month = 11;
     } else if (btnId === "proximo" && month === 11) {
       year++;
-      month = 0; // Correção aqui, avançar para janeiro (índice 0)
+      month = 0;
     } else {
       month = btnId === "proximo" ? month + 1 : month - 1;
     }
 
     date = new Date(year, month, new Date().getDate());
-    year = date.getFullYear();
-    month = date.getMonth();
     renderCalendar();
   });
 });
