@@ -30,6 +30,10 @@ const taskSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  notified: { // Nova propriedade para rastrear notificações
+    type: Boolean,
+    default: false,
   }
 });
 

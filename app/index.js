@@ -10,6 +10,11 @@ const MongoStore = require('connect-mongo'); // importar connect-mongo
 
 require("./controller/Auth")(passport);
 
+
+const cron = require('node-cron');
+const push = require('./controller/push'); //importando controler de push notifications
+const routes_push = require('./routes/routes_push');
+
 //inicializando conexão com banco de dados
 const dotenv = require("dotenv"); //importando arquivo de configuração
 dotenv.config(); //aquivo de configuração de usuario e senha do BD
@@ -49,8 +54,14 @@ app.use((req, res, next) => {
 });
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Para analisar corpos JSON
+
 app.use(routes);
 app.use(routes_exercicios);
+app.use(routes_push);
+
+// Agendamento de tarefas
+cron.schedule('* * * * *', push.checkAndSendNotifications);
 
 app.listen(port, () =>
   console.log(`Rodando server express http://localhost:${port}`)

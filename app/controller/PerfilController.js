@@ -4,8 +4,6 @@ const Imc = require("../models/imc");
 const Task = require("../models/task");
 const moment = require("moment-timezone");
 
-
-
 const perfil = async (req, res) => {
   if (!req.isAuthenticated()) {
     console.log("Acesso negado: usuário não autenticado");
