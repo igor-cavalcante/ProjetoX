@@ -5,8 +5,7 @@ const cron = require("node-cron");
 
 // Chaves VAPID
 const vapidKeys = {
-  publicKey:
-    "BPYmev-w_tDHqqG7XH_Cjk3CCGZCvgcH2qva7hlv2PhSsrq92Eyx-Zk3VSDg5tNddrGumlgFz_xaSyzZ-DbVoPA",
+  publicKey: "BPYmev-w_tDHqqG7XH_Cjk3CCGZCvgcH2qva7hlv2PhSsrq92Eyx-Zk3VSDg5tNddrGumlgFz_xaSyzZ-DbVoPA",
   privateKey: "r82BtVpyK7p0gTeQIK6M4cyfNNbnSWO_Z1wq-qsb-pg",
 };
 
@@ -16,10 +15,16 @@ webPush.setVapidDetails(
   vapidKeys.privateKey
 );
 
+
 const sendNotification = (subscription, dataToSend) => {
-  webPush.sendNotification(subscription, dataToSend).catch((error) => {
-    console.error("Erro ao enviar notificação:", error);
-  });
+  console.log('Enviando notificação para:', subscription);
+  webPush.sendNotification(subscription, dataToSend)
+    .then(response => {
+      console.log('Notificação enviada com sucesso:', response);
+    })
+    .catch(error => {
+      console.error('Erro ao enviar notificação:', error);
+    });
 };
 
 const checkAndSendNotifications = () => {
