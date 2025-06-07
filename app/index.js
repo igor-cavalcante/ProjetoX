@@ -29,13 +29,12 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public"))); // setando os arquivos estaticos
 
 //sessão
-//sessão
 app.use(session({
   secret:'seu-segredo',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: `mongodb+srv://user:I09HMPwbPVNAZOwd@projetox.a2ui9up.mongodb.net/?retryWrites=true&w=majority`, // URL do seu MongoDB Atlas
+    mongoUrl: `mongodb+srv://admin:u5sQ05AHU6jCSo2U@cluster0.r8d4sfa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, // URL do seu MongoDB Atlas
     ttl: 10 * 60, // 5 minutos em segundos
     autoRemove: 'native' // remove sessões automaticamente
   })
